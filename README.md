@@ -1,4 +1,4 @@
-# vue-chatterly-agent-web-app
+# vue-chatterly-customer-web
 
 ## Project setup
 ```
