@@ -15,18 +15,22 @@
     </section>
   </section>
   <LeadsFilter />
+  <LeadsTableHeader />
+  <LeadsTable />
 </section>
 </template>
 
 <script>
 // imports here
 import LeadsFilter from '../components/leads/LeadsFilter'
+import LeadsTableHeader from '../components/leads/LeadsTableHeader'
+import LeadsTable from '../components/leads/LeadsTable'
  
 export default {
   name: 'Home',
   description: 'I am the HOME PAGE for this app.',
 
-  components: { LeadsFilter, },
+  components: { LeadsFilter, LeadsTableHeader, LeadsTable, },
 
   props: {},
 

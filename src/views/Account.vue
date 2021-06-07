@@ -93,24 +93,24 @@ export default {
         payPalId: this.payPalId,
         sleep: this.sleep,
       }
-      this.$store.dispatch('update_agent_info', agentInfo)
+      this.$store.dispatch('update_customer_info', customerInfo)
     },
   },
 
  computed: {},
 
  mounted() {
-   const agentInfo = this.$store.getters.getCurrentAgent(100)
-   this.email = agentInfo.email
-   this.passPhrase = agentInfo.passPhrase
-   this.phone = agentInfo.phone
-   this.streetAddress = agentInfo.streetAddress
-   this.cityAddress = agentInfo.cityAddress
-   this.stateAddress = agentInfo.stateAddress
-   this.zipCode = agentInfo.zipCode
-   this.timeZone = agentInfo.timeZone
-   this.payPalId = agentInfo.payPalId
-   this.sleep = agentInfo.sleep
+   const customerInfo = this.$store.getters.getCurrentCustomer(200)
+   this.email = customerInfo.email
+   this.passPhrase = customerInfo.passPhrase
+   this.phone = customerInfo.phone
+   this.streetAddress = customerInfo.streetAddress
+   this.cityAddress = customerInfo.cityAddress
+   this.stateAddress = customerInfo.stateAddress
+   this.zipCode = customerInfo.zipCode
+   this.timeZone = customerInfo.timeZone
+   this.payPalId = customerInfo.payPalId
+   this.sleep = customerInfo.sleep
  }
 }
 </script>
