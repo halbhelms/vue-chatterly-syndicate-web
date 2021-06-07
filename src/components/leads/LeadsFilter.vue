@@ -1,7 +1,7 @@
 <template>
 <div class='leads-filter'>
   <div class="show-archived">
-    <input @click.once="toggleArchived" type="checkbox" name="show-archived" id="show-archived" value={true} /> 
+    <input @click="toggleArchived" type="checkbox" name="show-archived" id="show-archived" value={true} /> 
     <label for="show-archived">Show archived leads</label>
   </div>
 </div>
