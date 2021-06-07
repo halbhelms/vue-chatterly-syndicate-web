@@ -1,91 +1,87 @@
 <template>
 <section class='home'>
-  <div class="data">
-    <div class="data-point">
-      <div class="data-point-title">Chats this month</div>
-      <div class="data-point-datum">{{ chatsThisMonth }}</div>
-    </div>
-    <div class="data-point">
-      <div class="data-point-title">Chats this year</div>
-      <div class="data-point-datum">{{ chatsThisYear }}</div>
-    </div>
-    <div class="data-point">
-      <div class="data-point-title">Earnings this month</div>
-      <div class="data-point-datum">${{ earningsThisMonth }}</div>
-    </div>
-    <div class="data-point">
-      <div class="data-point-title">Earnings this year</div>
-      <div class="data-point-datum">${{ earningsThisYear }}</div>
-    </div>
-    <div class="data-point">
-      <div class="data-point-title">Lifetime earnings</div>
-      <div class="data-point-datum">${{ lifetimeEarnings }}</div>
-    </div>
-  </div>
-  <div class="chart">Chart</div>
+  <section class="leads-brief">
+    <section class="this-month brief">
+      <div class="brief-label">Leads this month</div>
+      <div class="brief-data">{{ leadsThisMonth }}</div>
+    </section>
+    <section class="this-year brief">
+      <div class="brief-label">Leads this year</div>
+      <div class="brief-data">{{ leadsThisYear }}</div>
+    </section>
+    <section class="lifetime brief">
+      <div class="brief-label">Leads lifetime</div>
+      <div class="brief-data">{{ lifetimeLeads }}</div>
+    </section>
+  </section>
+  <LeadsFilter />
 </section>
 </template>
 
 <script>
 // imports here
+import LeadsFilter from '../components/leads/LeadsFilter'
  
 export default {
   name: 'Home',
   description: 'I am the HOME PAGE for this app.',
 
-  components: {},
+  components: { LeadsFilter, },
 
   props: {},
 
   data() {
     return {
-      agentId: 100,
+      customerId: 200,
     }
   },
 
   methods: {},
 
  computed: {
-   chatsThisMonth() {
-     return this.$store.getters.getChatsThisMonth(this.agentId)
+   leadsThisMonth() {
+     return this.$store.getters.getLeadsThisMonth(this.customerId)
    },
-   chatsThisYear() {
-     return this.$store.getters.getChatsThisYear(this.agentId)
+   leadsThisYear() {
+     return this.$store.getters.getLeadsThisYear(this.customerId)
    },
-   earningsThisMonth() {
-     return this.$store.getters.getEarningsThisMonth(this.agentId)
-   },
-   earningsThisYear() {
-     return this.$store.getters.getEarningsThisYear(this.agentId)
-   },
-   lifetimeEarnings() {
-     return this.$store.getters.getLifetimeEarnings(this.agentId)
+   lifetimeLeads() {
+     return this.$store.getters.getLifetimeLeads(this.customerId)
    },
  }
 }
 </script>
 
 <style scoped>
+/* * {
+  outline: 1px solid green;
+} */
+
 section.home {
   position: relative;
-  display: grid;
-  grid-template-columns: 40% 60%;
   margin-top: 24px;
 }
 
-.data-point {
+section.leads-brief {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 30px;
+  border-bottom: 1px solid silver;
 }
 
-.data-point-title {
+.brief {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.brief-label {
   text-align: right;
-  padding-right: 12px;
+  margin-right: 12px;
 }
 
-.data-point-datum {
+.brief-data {
   text-align: left;
-  padding-left: 12px;
+  margin-left: 12px;
 }
 
 

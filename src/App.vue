@@ -2,11 +2,11 @@
   <section class="app">
     <img src="../src/assets/chatterly-logo.png" alt="" class="logo">
     <div id="nav">
-      <router-link to="/">Statistics</router-link> |
+      <router-link to="/">Leads</router-link> |
       <router-link to="/account">Account</router-link>
     </div>
     <div class="agent-info">
-      {{ agentName }}<br />
+      {{ customerName }}<br />
       {{ lastLogin }}
     </div>
   </section>
@@ -22,11 +22,11 @@
   export default {
     name: 'App',
     computed: {
-      agentName() {
-        return this.$store.getters.getCurrentAgent(100).name
+      customerName() {
+        return this.$store.getters.getCurrentCustomer(100).name
       },
       lastLogin() {
-        return this.$store.getters.getCurrentAgent(100).lastLogin
+        return this.$store.getters.getCurrentCustomer(100).lastLogin
       }
     },
   }

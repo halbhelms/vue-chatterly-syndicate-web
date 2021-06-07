@@ -3,60 +3,54 @@ import router from '../router/index'
 
 export default createStore({
   state: {
+    includeArchivedLeads: false,
   },
   mutations: {
+    TOGGLE_INCLUDE_ARCHIVED_LEADS(state) {
+      state.includeArchivedLeads = !state.includeArchivedLeads
+    }
   },
   getters: {
-    getCurrentAgent: () => agentId => {
-      // TODO: API call here but mocked for now
+    getCurrentCustomer: () => customerId => {
       return {
-        name: 'Andy Ayjent',
-        agentId: 100,
-        lastLogin: new Date('05-20-2021'),
-        email: 'andy@chatterlylive.com',
-        passPhrase: 'some animals are more equal than others',
-        phone: '702.569.1258',
-        streetAddress: '1104 Las Vegas Blvd',
-        cityAddress: 'Las Vegas',
-        stateAddress: 'NV',
-        zipCode: '89117',
-        timeZone: 'western',
-        payPalId: '54885644',
-        sleep: false,
+        name: 'Kevin Kustomr',
+        customerId: 200,
+        lastLogin: new Date('5-22-2021'),
+        email: 'kevink@gmail.com',
+        passPhrase: 'I am a customer. Let me in.',
+        phone: '941.714.4587',
+        streetAddress: '2217 Tamiami Hwy',
+        cityAddress: 'Sarasota',
+        stateAddress: 'FL',
+        zipCode: '30062',
+        timeZone: 'eastern',   
       }
     },
     
-    getChatsThisMonth: () => (agentId) =>{
+    getLeadsThisMonth: () => (customerId) =>{
       // TODO: API call here but mocked for now
-        return 200;
+        return 362;
     },
     
-    getChatsThisYear: () => (agentId) =>{
+    getLeadsThisYear: () => (customerId) =>{
       // TODO: API call here but mocked for now
-        return 102;
+        return 2102;
     },
     
-    getEarningsThisMonth: () => (agentId) =>{
+    getLifetimeLeads: () => (customerId) =>{
       // TODO: API call here but mocked for now
-        return 325.50;
-    },
-    
-    getEarningsThisYear: () => (agentId) =>{
-      // TODO: API call here but mocked for now
-        return 950.75;
-    },
-    
-    getLifetimeEarnings: () => (agentId) =>{
-      // TODO: API call here but mocked for now
-        return 2948.50;
+        return 4651;
     },
 
   },
   actions: {
-    update_agent_info({ commit}, agentInfo) {
+    update_customer_info({ commit}, customerInfo) {
       // TODO: TODO: API call
       router.push('/')
     },
+    toggle_include_archived_leads({ commit}) {
+      commit('TOGGLE_INCLUDE_ARCHIVED_LEADS')
+    }
   },
   modules: {
   }
