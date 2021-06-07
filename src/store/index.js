@@ -4,8 +4,10 @@ import router from '../router/index'
 export default createStore({
   state: {
     includeArchivedLeads: false,
+    tokensPerLeadCost: 7,
     leads: [
       {
+        id: 100,
         status: 'active',
         date: '12 Jun 2021',
         contact: 'Ellen Wentz',
@@ -75,6 +77,7 @@ export default createStore({
         ]
       },
       {
+        id: 200,
         status: 'active',
         date: '12 Jun 2021',
         contact: 'Davis Thomas',
@@ -90,6 +93,7 @@ export default createStore({
         },
       },
       {
+        id: 300,
         status: 'archived',
         date: '18 Jun 2021',
         contact: 'Andrea Barnes',
@@ -109,7 +113,15 @@ export default createStore({
   mutations: {
     TOGGLE_INCLUDE_ARCHIVED_LEADS(state) {
       state.includeArchivedLeads = !state.includeArchivedLeads
-    }
+    },
+
+    ARCHIVE_LEAD(state, leadId) {
+      const foundLead = state.leads.find( lead => {
+        return lead.id == leadId
+      })
+      foundLead.status = 'archived'
+    },
+
   },
   getters: {
     getCurrentCustomer: () => customerId => {
@@ -157,6 +169,11 @@ export default createStore({
 
   },
   actions: {
+    archive_lead({ commit }, leadId) {
+      // TODO: API call, mocked temporarily
+      commit('ARCHIVE_LEAD', leadId)
+    },
+
     update_customer_info({ commit}, customerInfo) {
       // TODO: TODO: API call
       router.push('/')

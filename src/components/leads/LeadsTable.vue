@@ -1,6 +1,6 @@
 <template>
 <section class='leads-table'>
-  <LeadsTableLineItem v-for="lead in leads" :key="lead.contact" :_lead="lead" />
+  <LeadsTableLineItem v-for="lead in leads" :key="lead.id" :_lead="lead" />
 </section>
 </template>
 

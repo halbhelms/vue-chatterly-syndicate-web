@@ -4,8 +4,8 @@
   <div class="contact">{{ _lead.contact }}</div>
   <div class="location">{{ _lead.location }}</div>
   <div class="phone">{{ _lead.phone }}</div>
-  <div class="qualification"></div>
-  <button class="archive">Archive</button>
+  <div class="qualification">{{ _lead.qualification.requiredResponses / _lead.qualification.requiredRequested * 100 }}%</div>
+  <button class="archive" @click="archiveLead(_lead.id)">Archive</button>
 </section>
 </template>
 
@@ -29,7 +29,11 @@ export default {
     return {}
   },
 
-  methods: {},
+  methods: {
+    archiveLead(leadId) {
+      this.$store.dispatch('archive_lead', leadId)
+    }
+  },
 
  computed: {}
 }
@@ -39,7 +43,7 @@ export default {
 section.leads-table-line-item {
   position: relative;
   display: grid;
-  grid-template-columns: 120px auto 160px 160px 140px;
+  grid-template-columns: 120px 1fr 1fr 160px 160px 140px;
   margin: 12px 40px 0 40px;
   text-align: left;
 }
