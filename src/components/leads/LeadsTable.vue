@@ -1,6 +1,6 @@
 <template>
 <section class='leads-table'>
-  <LeadsTableLineItem v-for="lead in leads" :key="lead.id" :_lead="lead" />
+  <LeadsTableLineItem v-for="lead in leads" :key="lead.id" :_lead="lead" @show-details="drilldown"/>
 </section>
 </template>
 
@@ -20,7 +20,10 @@ export default {
   },
 
   methods: {
-
+    drilldown() {
+      console.log('drilldown in LeadsTable')
+      this.$emit('open-modal')
+    }
   },
 
   computed: {

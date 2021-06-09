@@ -1,5 +1,7 @@
 <template>
-<section class='home'>
+store activeLeadId{{ $store.state.activeLeadId }}
+<LeadDetails v-if="showModal" @close-modal="closeModal"/>
+<section class='home' v-else>
   <section class="leads-brief">
     <section class="this-month brief">
       <div class="brief-label">Leads this month</div>
@@ -16,7 +18,7 @@
   </section>
   <LeadsFilter />
   <LeadsTableHeader />
-  <LeadsTable />
+  <LeadsTable @open-modal="openModal"/>
 </section>
 </template>
 
@@ -25,22 +27,33 @@
 import LeadsFilter from '../components/leads/LeadsFilter'
 import LeadsTableHeader from '../components/leads/LeadsTableHeader'
 import LeadsTable from '../components/leads/LeadsTable'
+import LeadDetails from '../components/leads/LeadDetails'
  
 export default {
   name: 'Home',
   description: 'I am the HOME PAGE for this app.',
 
-  components: { LeadsFilter, LeadsTableHeader, LeadsTable, },
+  components: { LeadsFilter, LeadsTableHeader, LeadsTable, LeadDetails, },
 
   props: {},
 
   data() {
     return {
       customerId: 200,
+      showModal: false,
     }
   },
 
-  methods: {},
+  methods: {
+    openModal() {
+      console.log('openModal in Home')
+      this.showModal = true;
+    },
+
+    closeModal() {
+      this.showModal = false
+    },
+  },
 
  computed: {
    leadsThisMonth() {
@@ -52,6 +65,9 @@ export default {
    lifetimeLeads() {
      return this.$store.getters.getLifetimeLeads(this.customerId)
    },
+   transcript() {
+
+   }
  }
 }
 </script>

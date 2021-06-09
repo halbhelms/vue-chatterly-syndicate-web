@@ -5,14 +5,21 @@ export default createStore({
   state: {
     includeArchivedLeads: false,
     tokensPerLeadCost: 7,
+    activeLeadId: null,
     leads: [
       {
         id: 100,
         status: 'active',
         date: '12 Jun 2021',
+        time: '9.24 AM',
         contact: 'Ellen Wentz',
         phone: '702.558.1578',
+        email: 'ewentz22@gmail.com',
         location: 'Henderson, NV',
+        street: '120 W. Broad',
+        city: 'Henderson',
+        state: 'NV',
+        zip: '89102',
         qualification: {
           desired: 6,
           desiredRequested: 6,
@@ -122,8 +129,24 @@ export default createStore({
       foundLead.status = 'archived'
     },
 
+    SET_ACTIVE_LEAD_ID(state, leadId) {
+      state.activeLeadId = leadId
+    }
+
   },
   getters: {
+    activeLead(state) {
+      return state.leads.find( lead => {
+        return lead.id == state.activeLeadId
+      })
+    },
+
+    transcript(state) {
+      return state.leads.find( lead => {
+        return lead.id == state.activeLeadId
+      }).transcript
+    },
+
     getCurrentCustomer: () => customerId => {
       return {
         name: 'Kevin Kustomr',
@@ -165,7 +188,7 @@ export default createStore({
           return lead.status == 'active'
         })
       }
-    }
+    },
 
   },
   actions: {
@@ -173,11 +196,17 @@ export default createStore({
       // TODO: API call, mocked temporarily
       commit('ARCHIVE_LEAD', leadId)
     },
+    
+    set_active_lead_id({ commit }, leadId) {
+      // TODO: API call, mocked temporarily
+      commit('SET_ACTIVE_LEAD_ID', leadId)
+    },
 
     update_customer_info({ commit}, customerInfo) {
       // TODO: TODO: API call
       router.push('/')
     },
+
     toggle_include_archived_leads({ commit}) {
       commit('TOGGLE_INCLUDE_ARCHIVED_LEADS')
     }
