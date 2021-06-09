@@ -116,6 +116,14 @@ export default createStore({
         },
       },
     ],
+    availableActions: [
+      'Intro',
+      'Phone',
+      'Email',
+      'Residence Type',
+      'Address',
+      
+    ]
   },
   mutations: {
     TOGGLE_INCLUDE_ARCHIVED_LEADS(state) {
