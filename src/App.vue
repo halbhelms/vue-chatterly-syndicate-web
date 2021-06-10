@@ -2,19 +2,18 @@
   <section class="app">
     <img src="../src/assets/chatterly-logo.png" alt="" class="logo">
     <div id="nav">
-      <router-link to="/">Leads</router-link> |
+      <router-link to="/">Customers</router-link> | <router-link to="/prospects">Prospects</router-link> |
       <router-link to="/account">Account</router-link>
     </div>
     <div class="agent-info">
-      {{ customerName }}<br />
-      {{ lastLogin }}
+      {{ userName }}<br />
     </div>
   </section>
   <main>
     <router-view/>
   </main>
   <footer>
-    Chatterly Agent App
+    Chatterly Syndicate App
   </footer>
 </template>
 
@@ -22,12 +21,9 @@
   export default {
     name: 'App',
     computed: {
-      customerName() {
-        return this.$store.getters.getCurrentCustomer(100).name
+      userName() {
+        return this.$store.state.currentUser.name
       },
-      lastLogin() {
-        return this.$store.getters.getCurrentCustomer(100).lastLogin
-      }
     },
   }
 </script>
